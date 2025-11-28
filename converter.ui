@@ -1,0 +1,772 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>650</width>
+    <height>550</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>650</width>
+    <height>550</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>16777215</width>
+    <height>550</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Универсальный конвертер</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QMainWindow {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                                stop:0 #667eea, stop:1 #764ba2);
+    font-family: 'Segoe UI', Arial, sans-serif;
+}</string>
+  </property>
+  <property name="iconSize">
+   <size>
+    <width>24</width>
+    <height>24</height>
+   </size>
+  </property>
+  <property name="documentMode">
+   <bool>false</bool>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="styleSheet">
+       <string notr="true">QTabWidget::pane {
+    border: 2px solid #6a5acd;
+    border-radius: 10px;
+    background-color: white;
+    margin: 5px;
+}
+
+QTabWidget::tab-bar {
+    alignment: center;
+}
+
+QTabBar::tab {
+    background-color: #f0f0f0;
+    color: #333;
+    padding: 12px 20px;
+    margin: 3px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-weight: bold;
+    min-width: 120px;
+}
+
+QTabBar::tab:selected {
+    background-color: #6a5acd;
+    color: white;
+    border: 1px solid #5a4acd;
+}
+
+QTabBar::tab:hover:!selected {
+    background-color: #e0e0ff;
+    border: 1px solid #6a5acd;
+}</string>
+      </property>
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="physical_tab">
+       <attribute name="title">
+        <string>📏 Физические величины</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <item>
+           <widget class="QLabel" name="label">
+            <property name="styleSheet">
+             <string notr="true">QLabel {
+    background-color: #6a5acd;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 12px;
+}</string>
+            </property>
+            <property name="text">
+             <string>Категория:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="category_combo">
+            <property name="styleSheet">
+             <string notr="true">QComboBox {
+    background-color: white;
+    border: 2px solid #6a5acd;
+    border-radius: 8px;
+    padding: 8px;
+    font-size: 12px;
+    min-width: 150px;
+}
+
+QComboBox::drop-down {
+    border: none;
+    width: 20px;
+}
+
+QComboBox::down-arrow {
+    image: none;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid #6a5acd;
+    width: 0px;
+    height: 0px;
+}
+
+QComboBox QAbstractItemView {
+    border: 2px solid #6a5acd;
+    border-radius: 8px;
+    background-color: white;
+    selection-background-color: #6a5acd;
+}</string>
+            </property>
+            <item>
+             <property name="text">
+              <string>📏 Длина</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>⚖️ Масса</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>🌡️ Температура</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>🚀 Скорость</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>📐 Площадь</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>🧪 Объем</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>⏰ Время</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <spacer name="verticalSpacer">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_3">
+            <item>
+             <widget class="QLabel" name="label_2">
+              <property name="styleSheet">
+               <string notr="true">QLabel {
+    background-color: #6a5acd;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 11px;
+}</string>
+              </property>
+              <property name="text">
+               <string>Из:</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="from_unit_combo">
+              <property name="styleSheet">
+               <string notr="true">QComboBox {
+    background-color: white;
+    border: 2px solid #6a5acd;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 12px;
+    min-height: 20px;
+}
+
+QComboBox::drop-down {
+    border: none;
+}
+
+QComboBox::down-arrow {
+    image: none;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 4px solid #6a5acd;
+}</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="from_value_edit">
+              <property name="styleSheet">
+               <string notr="true">QLineEdit {
+    background-color: white;
+    border: 2px solid #6a5acd;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 14px;
+    selection-background-color: #6a5acd;
+}
+
+QLineEdit:focus {
+    border: 2px solid #ff6b6b;
+    background-color: #fff5f5;
+}</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="placeholderText">
+               <string>Введите значение...</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QPushButton" name="swap_units_btn">
+            <property name="maximumSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+    background-color: #ff6b6b;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+QPushButton:hover {
+    background-color: #ff5252;
+    transform: scale(1.05);
+}
+
+QPushButton:pressed {
+    background-color: #e74c3c;
+}</string>
+            </property>
+            <property name="text">
+             <string>⇄</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_4">
+            <item>
+             <widget class="QLabel" name="label_3">
+              <property name="styleSheet">
+               <string notr="true">QLabel {
+    background-color: #6a5acd;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 11px;
+}</string>
+              </property>
+              <property name="text">
+               <string>В:</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="to_unit_combo">
+              <property name="styleSheet">
+               <string notr="true">QComboBox {
+    background-color: white;
+    border: 2px solid #6a5acd;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 12px;
+    min-height: 20px;
+}
+
+QComboBox::drop-down {
+    border: none;
+}
+
+QComboBox::down-arrow {
+    image: none;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 4px solid #6a5acd;
+}</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="to_value_edit">
+              <property name="styleSheet">
+               <string notr="true">QLineEdit {
+    background-color: #f8f9fa;
+    border: 2px solid #28a745;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+QLineEdit[readOnly=&quot;true&quot;] {
+    background-color: #e8f5e8;
+    color: #27ae60;
+}</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="readOnly">
+               <bool>true</bool>
+              </property>
+              <property name="placeholderText">
+               <string>Результат...</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <spacer name="verticalSpacer_2">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>30</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="currency_tab">
+       <attribute name="title">
+        <string>💱 Конвертер валют</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_5">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_4">
+          <item>
+           <widget class="QLabel" name="label_4">
+            <property name="styleSheet">
+             <string notr="true">QLabel {
+    background-color: #6a5acd;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 11px;
+}</string>
+            </property>
+            <property name="text">
+             <string>Курсы обновлены:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="last_update_label">
+            <property name="styleSheet">
+             <string notr="true">QLabel {
+    background-color: #ffa726;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 11px;
+}</string>
+            </property>
+            <property name="text">
+             <string>Не обновлялось</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="update_rates_btn">
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+    background-color: #17a2b8;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 15px;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+QPushButton:hover {
+    background-color: #138496;
+}
+
+QPushButton:pressed {
+    background-color: #117a8b;
+}</string>
+            </property>
+            <property name="text">
+             <string>🔄 Обновить курсы</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <spacer name="verticalSpacer_3">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>30</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_6">
+            <item>
+             <widget class="QLabel" name="label_5">
+              <property name="styleSheet">
+               <string notr="true">QLabel {
+    background-color: #6a5acd;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 11px;
+}</string>
+              </property>
+              <property name="text">
+               <string>Из валюты:</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="from_currency_combo">
+              <property name="styleSheet">
+               <string notr="true">QComboBox {
+    background-color: white;
+    border: 2px solid #6a5acd;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 12px;
+}
+
+QComboBox::drop-down {
+    border: none;
+}
+
+QComboBox::down-arrow {
+    image: none;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 4px solid #6a5acd;
+}</string>
+              </property>
+              <item>
+               <property name="text">
+                <string>🇺🇸 USD - Доллар США</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>🇪🇺 EUR - Евро</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>🇷🇺 RUB - Российский рубль</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>🇬🇧 GBP - Фунт стерлингов</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>🇯🇵 JPY - Японская иена</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>🇨🇳 CNY - Китайский юань</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="from_currency_edit">
+              <property name="styleSheet">
+               <string notr="true">QLineEdit {
+    background-color: white;
+    border: 2px solid #6a5acd;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 14px;
+    selection-background-color: #6a5acd;
+}
+
+QLineEdit:focus {
+    border: 2px solid #ff6b6b;
+    background-color: #fff5f5;
+}</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="placeholderText">
+               <string>Введите сумму...</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QPushButton" name="swap_currency_btn">
+            <property name="maximumSize">
+             <size>
+              <width>60</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+    background-color: #ff6b6b;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+QPushButton:hover {
+    background-color: #ff5252;
+    transform: scale(1.05);
+}
+
+QPushButton:pressed {
+    background-color: #e74c3c;
+}</string>
+            </property>
+            <property name="text">
+             <string>⇄</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_7">
+            <item>
+             <widget class="QLabel" name="label_6">
+              <property name="styleSheet">
+               <string notr="true">QLabel {
+    background-color: #6a5acd;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 11px;
+}</string>
+              </property>
+              <property name="text">
+               <string>В валюту:</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="to_currency_combo">
+              <property name="styleSheet">
+               <string notr="true">QComboBox {
+    background-color: white;
+    border: 2px solid #6a5acd;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 12px;
+}
+
+QComboBox::drop-down {
+    border: none;
+}
+
+QComboBox::down-arrow {
+    image: none;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 4px solid #6a5acd;
+}</string>
+              </property>
+              <item>
+               <property name="text">
+                <string>🇷🇺 RUB - Российский рубль</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>🇺🇸 USD - Доллар США</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>🇪🇺 EUR - Евро</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>🇬🇧 GBP - Фунт стерлингов</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>🇯🇵 JPY - Японская иена</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>🇨🇳 CNY - Китайский юань</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="to_currency_edit">
+              <property name="styleSheet">
+               <string notr="true">QLineEdit {
+    background-color: #f8f9fa;
+    border: 2px solid #28a745;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+QLineEdit[readOnly=&quot;true&quot;] {
+    background-color: #e8f5e8;
+    color: #27ae60;
+}</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="readOnly">
+               <bool>true</bool>
+              </property>
+              <property name="placeholderText">
+               <string>Результат...</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <spacer name="verticalSpacer_4">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>30</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QStatusBar" name="statusbar">
+   <property name="styleSheet">
+    <string notr="true">QStatusBar {
+    background-color: #2c3e50;
+    color: white;
+    font-size: 11px;
+}</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
