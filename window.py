@@ -487,6 +487,54 @@ class Ui_MainWindow(object):
         self.swap_units_btn.setText(_translate("MainWindow", "⇄"))
         self.label_3.setText(_translate("MainWindow", "В:"))
         self.to_value_edit.setPlaceholderText(_translate("MainWindow", "Результат..."))
+
+        self.convert_btn = QtWidgets.QPushButton(self.physical_tab)
+        self.convert_btn.setText(_translate("MainWindow", "Конвертировать"))
+        self.convert_btn.setObjectName(u"convert_btn")
+        self.convert_btn.setStyleSheet(u"QPushButton {\n"
+"    background-color: #28a745;\n"
+"    color: white;\n"
+"    border: none;\n"
+"    border-radius: 10px;\n"
+"    padding: 15px;\n"
+"    font-size: 14px;\n"
+"    font-weight: bold;\n"
+"    margin: 10px 50px;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: #219e3d;\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: #1e7e34;\n"
+"}")
+        
+        self.convert_currency_btn = QtWidgets.QPushButton(self.currency_tab)
+        self.convert_currency_btn.setText(_translate("MainWindow", "Конвертировать"))
+        self.convert_currency_btn.setObjectName(u"convert_currency_btn")
+        self.convert_currency_btn.setStyleSheet(u"QPushButton {\n"
+"    background-color: #28a745;\n"
+"    color: white;\n"
+"    border: none;\n"
+"    border-radius: 10px;\n"
+"    padding: 15px;\n"
+"    font-size: 14px;\n"
+"    font-weight: bold;\n"
+"    margin: 10px 50px;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: #219e3d;\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: #1e7e34;\n"
+"}")
+
+        self.verticalLayout_5.addWidget(self.convert_currency_btn)
+
+        self.verticalLayout_2.addWidget(self.convert_btn)
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.physical_tab), _translate("MainWindow", "📏 Физические величины"))
         self.label_4.setText(_translate("MainWindow", "Курсы обновлены:"))
         self.last_update_label.setText(_translate("MainWindow", "Не обновлялось"))
