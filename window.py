@@ -252,6 +252,11 @@ class Ui_MainWindow(object):
         self.verticalLayout_4.addWidget(self.to_value_edit)
         self.horizontalLayout_2.addLayout(self.verticalLayout_4)
         self.verticalLayout_2.addLayout(self.horizontalLayout_2)
+
+        self.label_8 = QtWidgets.QLabel(self.physical_tab)
+        self.label_8.setObjectName(u"label_8")
+        self.verticalLayout_2.addWidget(self.label_8) 
+
         spacerItem1 = QtWidgets.QSpacerItem(20, 30, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_2.addItem(spacerItem1)
         self.tabWidget.addTab(self.physical_tab, "")
@@ -453,6 +458,11 @@ class Ui_MainWindow(object):
         self.verticalLayout_7.addWidget(self.to_currency_edit)
         self.horizontalLayout_3.addLayout(self.verticalLayout_7)
         self.verticalLayout_5.addLayout(self.horizontalLayout_3)
+
+        self.label_7 = QtWidgets.QLabel(self.currency_tab)
+        self.label_7.setObjectName(u"label_7")
+        self.verticalLayout_5.addWidget(self.label_7)       
+
         spacerItem4 = QtWidgets.QSpacerItem(20, 30, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout_5.addItem(spacerItem4)
         self.tabWidget.addTab(self.currency_tab, "")
