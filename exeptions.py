@@ -11,5 +11,11 @@ class LogicError(Exception):
     
     def zero_kelvin_unit_2(self):
         return 'Такие температуры невозможны (0 по Кельвину)'
+    
+class CurrencyError(Exception):
 
+    def negative_value(self):
+        return 'Вы не можете конвертировать отрицательные значения'
+    
+    
     

@@ -13,7 +13,7 @@ class Ui_MainWindow(object):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(650, 550)
         MainWindow.setMinimumSize(QtCore.QSize(650, 550))
-        MainWindow.setMaximumSize(QtCore.QSize(16777215, 550))
+        MainWindow.setMaximumSize(QtCore.QSize(16777215, 16777215))
         MainWindow.setStyleSheet("QMainWindow {\n"
 "    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,\n"
 "                                stop:0 #667eea, stop:1 #764ba2);\n"

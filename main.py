@@ -9,6 +9,7 @@ from PyQt6.QtWidgets import (
 )
 from PyQt6.QtCore import QDateTime, Qt
 from PyQt6.QtGui import QStandardItemModel, QStandardItem
+from PyQt6 import QtCore
 
 from window import Ui_MainWindow
 
@@ -29,6 +30,7 @@ class Converter(QMainWindow):
         self.setup_connections()
         self.update_units()
         self.currency_operator = Currency_operations()
+        self.update_rates()
         
 
     def setup_connections(self):
@@ -41,6 +43,9 @@ class Converter(QMainWindow):
         self.ui.from_value_edit.returnPressed.connect(self.convert_physical_units)
 
         self.ui.convert_currency_btn.clicked.connect(self.convert_currency_units)
+        self.ui.from_currency_edit.returnPressed.connect(self.convert_currency_units)
+
+        self.ui.update_rates_btn.clicked.connect(self.update_rates)
         
     def update_units(self, category=None):
         if category is None:
@@ -75,6 +80,12 @@ class Converter(QMainWindow):
         second_unit_index = self.ui.to_currency_combo.currentIndex()
         self.ui.from_currency_combo.setCurrentIndex(second_unit_index) 
         self.ui.to_currency_combo.setCurrentIndex(first_unit_index)
+
+        if self.ui.from_currency_edit.text():
+            tmp = self.ui.from_currency_edit.text()
+            self.ui.from_currency_edit.setText(self.ui.to_currency_edit.text())
+            self.ui.to_currency_edit.setText(tmp)
+            self.convert_currency_units()
         
 
     def convert_physical_units(self):
@@ -115,12 +126,54 @@ class Converter(QMainWindow):
         self.ui.to_value_edit.setText(str(edited_value))
 
     def convert_currency_units(self):
+        exceptions = CurrencyError()
+        messege = ''
+
         self.ui.label_7.setText('')
         unit_1 = self.ui.from_currency_combo.currentText()
         unit_2 = self.ui.to_currency_combo.currentText()
         value = self.ui.from_currency_edit.text()
-        edited_value = self.currency_operator.convert_currency(unit_1, unit_2, float(value))
+        if ',' in value:                        #Проверка на запись дробного числа через ","
+            value = value.replace(',', '.')
+        try:
+            edited_value = self.currency_operator.convert_currency(unit_1, unit_2, float(value))
+        except:
+            self.ui.label_7.setText('Произошла ошибка: введите значение')
+            self.ui.to_currency_edit.setText('')
+            return None            
+        
+        if float(value) < 0: #отрицательное значение
+            messege = exceptions.negative_value()    
+
+        if messege:
+            self.ui.label_7.setText(messege)
+            self.ui.to_currency_edit.setText('')
+            return None             
+        
         self.ui.to_currency_edit.setText(str(edited_value))
+
+    def update_rates(self):
+        result = self.currency_operator.update_exchange_rates()
+        if result:
+            self.ui.last_update_label.setText('Не удалось обновить курсы валют')
+            self.ui.last_update_label.setStyleSheet("QLabel {\n"
+            "    background-color: #c74242;\n"
+            "    color: white;\n"
+            "    padding: 6px 12px;\n"
+            "    border-radius: 6px;\n"
+            "    font-weight: bold;\n"
+            "    font-size: 11px;\n"
+            "}")
+        else:
+            self.ui.last_update_label.setText('Курсы обновлены')
+            self.ui.last_update_label.setStyleSheet("QLabel {\n"
+            "    background-color: #4fc742;\n"
+            "    color: white;\n"
+            "    padding: 6px 12px;\n"
+            "    border-radius: 6px;\n"
+            "    font-weight: bold;\n"
+            "    font-size: 11px;\n"
+            "}")           
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
