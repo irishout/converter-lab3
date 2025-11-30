@@ -1,5 +1,5 @@
 
-from window import Ui_MainWindow
+
 # Категории исключений
 class LogicError(Exception):
 

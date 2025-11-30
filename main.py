@@ -13,7 +13,7 @@ from PyQt6.QtGui import QStandardItemModel, QStandardItem
 from window import Ui_MainWindow
 
 from coefficients_and_categorys import units_dict
-from converter_logic import Physical_operations
+from converter_logic import Physical_operations, Currency_operations
 from exeptions import *
 
 class Converter(QMainWindow):
@@ -28,6 +28,7 @@ class Converter(QMainWindow):
         
         self.setup_connections()
         self.update_units()
+        self.currency_operator = Currency_operations()
         
 
     def setup_connections(self):
@@ -38,6 +39,8 @@ class Converter(QMainWindow):
 
         self.ui.convert_btn.clicked.connect(self.convert_physical_units)
         self.ui.from_value_edit.returnPressed.connect(self.convert_physical_units)
+
+        self.ui.convert_currency_btn.clicked.connect(self.convert_currency_units)
         
     def update_units(self, category=None):
         if category is None:
@@ -111,7 +114,13 @@ class Converter(QMainWindow):
                     
         self.ui.to_value_edit.setText(str(edited_value))
 
-
+    def convert_currency_units(self):
+        self.ui.label_7.setText('')
+        unit_1 = self.ui.from_currency_combo.currentText()
+        unit_2 = self.ui.to_currency_combo.currentText()
+        value = self.ui.from_currency_edit.text()
+        edited_value = self.currency_operator.convert_currency(unit_1, unit_2, float(value))
+        self.ui.to_currency_edit.setText(str(edited_value))
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
