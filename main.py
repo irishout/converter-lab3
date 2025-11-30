@@ -14,6 +14,7 @@ from window import Ui_MainWindow
 
 from coefficients_and_categorys import units_dict
 from converter_logic import Physical_operations
+from exeptions import *
 
 class Converter(QMainWindow):
 
@@ -65,14 +66,41 @@ class Converter(QMainWindow):
         self.ui.to_currency_combo.setCurrentIndex(first_unit_index)
 
     def convert_physical_units(self):
+        self.ui.label_8.setText('')
         operator = Physical_operations()
         category = self.ui.category_combo.currentText()
         unit_1 = self.ui.from_unit_combo.currentText()
         unit_2 = self.ui.to_unit_combo.currentText()
-        vaule = self.ui.from_value_edit.text()
+        value = self.ui.from_value_edit.text()
+        if ',' in value:
+            value = value.replace(',', '.')
+        try:
+            float_value = float(value)
+            edited_value = operator.convert_physical(category, unit_1, unit_2, float_value)
+        except:
+            self.ui.label_8.setText('Произошла ошибка: введите значение')
+            self.ui.to_value_edit.setText('')
+            return None            
+        
+        #Исключения
+        exceptions = LogicError()
+        messege = None
+        if float(value) < 0 and category != 'Температура':
+            messege = exceptions.negative_value(category)
 
-        edited_vaule = operator.convert_physical(category, unit_1, unit_2, float(vaule))
-        self.ui.to_value_edit.setText(str(edited_vaule))
+        elif unit_1 == 'Кельвины' and float(value) < 0:
+            messege = exceptions.zero_kelvin_unit_1()
+        
+        elif unit_2 == 'Кельвины' and edited_value < 0:
+            messege = exceptions.zero_kelvin_unit_2()
+
+
+        if messege:
+            self.ui.label_8.setText(messege)
+            self.ui.to_value_edit.setText('')
+            return None           
+                    
+        self.ui.to_value_edit.setText(str(edited_value))
 
 
 

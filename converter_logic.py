@@ -37,5 +37,3 @@ class Physical_operations:
 
         return round(converted_unit, 4)
 
-a = Physical_operations()
-print(a.convert_physical('Температура','Кельвины','Цельсии', 787))
