@@ -35,7 +35,9 @@ class Converter(QMainWindow):
         self.ui.category_combo.currentTextChanged.connect(self.update_units)
         self.ui.swap_units_btn.clicked.connect(self.swap_units)
         self.ui.swap_currency_btn.clicked.connect(self.swap_currency_units)
+
         self.ui.convert_btn.clicked.connect(self.convert_physical_units)
+        self.ui.from_value_edit.returnPressed.connect(self.convert_physical_units)
         
     def update_units(self, category=None):
         if category is None:
@@ -59,11 +61,18 @@ class Converter(QMainWindow):
         self.ui.from_unit_combo.setCurrentIndex(second_unit_index) 
         self.ui.to_unit_combo.setCurrentIndex(first_unit_index)
 
+        if self.ui.from_value_edit.text():
+            tmp = self.ui.from_value_edit.text()
+            self.ui.from_value_edit.setText(self.ui.to_value_edit.text())
+            self.ui.to_value_edit.setText(tmp)
+            self.convert_physical_units()
+
     def swap_currency_units(self):
         first_unit_index = self.ui.from_currency_combo.currentIndex()
         second_unit_index = self.ui.to_currency_combo.currentIndex()
         self.ui.from_currency_combo.setCurrentIndex(second_unit_index) 
         self.ui.to_currency_combo.setCurrentIndex(first_unit_index)
+        
 
     def convert_physical_units(self):
         self.ui.label_8.setText('')
@@ -72,7 +81,8 @@ class Converter(QMainWindow):
         unit_1 = self.ui.from_unit_combo.currentText()
         unit_2 = self.ui.to_unit_combo.currentText()
         value = self.ui.from_value_edit.text()
-        if ',' in value:
+
+        if ',' in value:                        #Проверка на запись дробного числа через ","
             value = value.replace(',', '.')
         try:
             float_value = float(value)
@@ -85,15 +95,14 @@ class Converter(QMainWindow):
         #Исключения
         exceptions = LogicError()
         messege = None
-        if float(value) < 0 and category != 'Температура':
+        if float(value) < 0 and category != 'Температура': #отрицательное значение
             messege = exceptions.negative_value(category)
 
-        elif unit_1 == 'Кельвины' and float(value) < 0:
+        elif unit_1 == 'Кельвины' and float(value) < 0: #0 по кельвину
             messege = exceptions.zero_kelvin_unit_1()
         
-        elif unit_2 == 'Кельвины' and edited_value < 0:
+        elif unit_2 == 'Кельвины' and edited_value < 0: #0 по кельвину
             messege = exceptions.zero_kelvin_unit_2()
-
 
         if messege:
             self.ui.label_8.setText(messege)
