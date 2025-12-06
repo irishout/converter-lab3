@@ -38,6 +38,22 @@ converter/
 
 └── README.md           # Документация
 
-Для установки склонируйте репозеторий и запустите main.py. Убедитесь, что у вас утановленны библиотеки PyQt6 requests watchdog.
+### Установка
 
+1. Клонирование репо: https://github.com/irishout/converter-lab3.git
+
+2. Создание и активация виртуальной среды:
+
+    - python3 -m venv .venv
+    - source .venv/bin/activate  # macOS/Linux
+    - .venv\Scripts\activate   # Windows
+
+3. Установка зависимостей: 
+
+    - pip install -r requirements.txt
+
+4. Запуск проекта:
+
+    - python run.py (или python3 run.py)
+    - 
 Этот проект распространяется под лицензией MIT. Вы можете свободно использовать, изменять и распространять его.
