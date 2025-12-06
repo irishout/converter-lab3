@@ -14,11 +14,8 @@ class Physical_operations:
             elif unit_1 == "Цельсии" and unit_2 == "Фаренгейты":
                 value = (value * 9/5) + 32
             elif unit_1 == "Кельвины" and unit_2 == "Цельсии":
-
                 value = value - 273.15
             elif unit_1 == "Кельвины" and unit_2 == "Фаренгейты":
-
-
                 value = (value - 273.15) * 9/5 + 32
             elif unit_1 == "Фаренгейты" and unit_2 == "Цельсии":
                 value = (value - 32) * 5/9
@@ -42,7 +39,6 @@ class Currency_operations:
     def __init__(self):
         self.rates = {}
         
-
     def update_exchange_rates(self):
         try:
             url = "https://www.cbr.ru/scripts/XML_daily.asp"
